@@ -1,16 +1,11 @@
 import express from "express"
+import router from "./routes/authRoute.js";
 
 const app = express();
 
-app.get("/"  , (req,res) => {
-    res.status(200).send("Hello World")
-})
+app.use("/api/auth" , router)
 
-app.get("/register"  , (req,res) => {
-    res.status(200).send("Register Yourself")
-})
-
-const PORT = 4000
+const PORT = 4000 
 
 app.listen(PORT , () => {
     console.log(`Server is running on PORT ${PORT}`)
