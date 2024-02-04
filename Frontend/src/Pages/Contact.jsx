@@ -1,9 +1,83 @@
-import React from 'react'
+import React, { useState } from "react";
 
 const Contact = () => {
-  return (
-    <div>Contact</div>
-  )
-}
+  const [contact, setContact] = useState({
+    username: "",
+    email: "",
+    message: "",
+  });
 
-export default Contact
+  const handleInput = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setContact({
+      ...contact,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(contact);
+  };
+  return (
+    <>
+      <section>
+        <div className="">
+          <h1>Contact Us</h1>
+        </div>
+        <div className="">
+          <div className="">
+            <img src="/images/support.png" alt="" width={500} height={500}/>
+          </div>
+
+          <section>
+            <form action="" onSubmit={handleSubmit}>
+              <div className="">
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                  autoCorrect="off"
+                  onChange={handleInput}
+                  value={contact.username}
+                />
+              </div>
+              <div className="">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autoCorrect="off"
+                  onChange={handleInput}
+                  value={contact.email}
+                />
+              </div>
+              <div className="">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  cols={30}
+                  rows={30}
+                  onChange={handleInput}
+                  value={contact.message}
+                ></textarea>
+              </div>
+              <div className="">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Contact;
