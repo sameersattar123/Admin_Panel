@@ -1,4 +1,5 @@
 import { User } from "../model/userModel.js";
+import bcrypt from "bcryptjs"
 
 const registerController = async (req, res) => {
   try {
@@ -11,10 +12,13 @@ const registerController = async (req, res) => {
       return res.status(400).json({ message: "User Already Existed" });
     }
 
-    const userCreated = await User.create({ username, email, phone, password });
+    // const saltPassword = 10;
+    // const hashPassword = await bcrypt.hash(password , saltPassword)
+
+    const userCreated = await User.create({ username, email, phone, password});
 
     res.status(200).json({data : userCreated});
-  } catch (error) {
+  } catch (error) {  
     res.status(500).json("Internal Server Error");
   }
 };
