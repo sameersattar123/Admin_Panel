@@ -1,5 +1,6 @@
 import express from "express"
-import router from "./routes/authRoute.js";
+import authRouter from "./routes/authRoute.js";
+import contactRouter from "./routes/contactRoute.js";
 import dotenv from 'dotenv'
 import connectDB from "./db/index.js";
 
@@ -8,7 +9,8 @@ dotenv.config()
 const app = express();
 app.use(express.json());
 
-app.use("/api/auth" , router)
+app.use("/api/auth" , authRouter)
+app.use("/api/form" , contactRouter)
 
 connectDB() 
 .then(() => {
