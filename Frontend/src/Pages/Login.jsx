@@ -56,7 +56,7 @@ const Login = () => {
                   width={500}
                   height={500}
                   alt=""
-                />
+                /> 
               </div>
               <div className="">
                 <h1 className="">Login Form</h1>
