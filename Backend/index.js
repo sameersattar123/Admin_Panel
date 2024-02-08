@@ -4,13 +4,13 @@ import contactRouter from "./routes/contactRoute.js";
 import dotenv from 'dotenv'
 import connectDB from "./db/index.js";
 import cors from "cors"
-
+ 
 dotenv.config()
 
 const app = express();
 
 app.use(cors({
-origin : "http://localhost:5174",
+origin : "http://localhost:5173",
 methods : "GET , POST , DELETE , PUT , PATCH , HEAD",
 credentials : true
 }))
