@@ -4,7 +4,7 @@ import validate from "../middlewares/validateMiddleware.js";
 import { signupSchema,  loginSchema } from "../validations/authValidation.js";
 
 const router = express.Router(); 
-
+ 
 router.route("/register").post(validate(signupSchema) ,  registerController)
 router.route("/login").post(validate(loginSchema) ,  loginController)
 
