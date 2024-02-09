@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { useAuth } from "../store/auth";
 
 const Contact = () => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const [contact, setContact] = useState({
     username: "",
     email: "",
     message: "",
   });
 
-  const [userData, setUserData] = useState(true)
+  const [userData, setUserData] = useState(true);
 
   if (userData && user) {
     setContact({
-      email : user.email,
-      username : user.username,
-      message : ""
-    })
-    setUserData(false)
+      email: user.email,
+      username: user.username,
+      message: "",
+    });
+    setUserData(false);
   }
 
   const handleInput = (e) => {
@@ -30,8 +30,30 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch(`http://localhost:4000/api/form/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contact),
+      });
+      if (response.ok) {
+        setContact({
+            username: "",
+            email: "",
+            message: "",
+          });
+        const data = await response.json();
+        console.log(data);
+        alert("message submitted Successfully");
+      }
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
     console.log(contact);
   };
   return (
@@ -42,7 +64,7 @@ const Contact = () => {
         </div>
         <div className="">
           <div className="">
-            <img src="/images/support.png" alt="" width={500} height={500}/>
+            <img src="/images/support.png" alt="" width={500} height={500} />
           </div>
 
           <section>
