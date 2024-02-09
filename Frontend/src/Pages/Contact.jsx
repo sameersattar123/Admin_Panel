@@ -1,11 +1,24 @@
 import React, { useState } from "react";
+import { useAuth } from "../store/auth";
 
 const Contact = () => {
+  const {user} = useAuth();
   const [contact, setContact] = useState({
     username: "",
     email: "",
     message: "",
   });
+
+  const [userData, setUserData] = useState(true)
+
+  if (userData && user) {
+    setContact({
+      email : user.email,
+      username : user.username,
+      message : ""
+    })
+    setUserData(false)
+  }
 
   const handleInput = (e) => {
     let name = e.target.name;

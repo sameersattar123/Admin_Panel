@@ -56,9 +56,9 @@ const loginController = async (req, res) => {
 const userController = async (req, res) => {
   try {
     const userData = req.user;
-    res.status(200).json({ message: userData });
+    return res.status(200).json({userData});
   } catch (error) {
-    res.status(500).json("Internal Server Error");
+    return res.status(500).json("Internal Server Error");
   }
 };
 export { registerController, loginController, userController };

@@ -1,8 +1,11 @@
 import React from 'react'
+import { useAuth } from '../store/auth'
 
 const About = () => {
+  const {user} = useAuth();
+  console.log(user)
   return (
-    <div>About</div>
+    <div>Hi {user.username}</div>
   )
 }
 
