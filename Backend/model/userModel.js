@@ -48,11 +48,10 @@ UserSchema.methods.generateToken = function () {
       userId: this ._id.toString(),
       email: this.email,
       isAdmin : this.isAdmin,
-      username: this.username,
     },
     process.env.JWT_TOKEN_SECRET,
     {
-      expiresIn: "30d",
+      expiresIn: "30d", 
     }
   );
 };
